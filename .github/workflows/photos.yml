@@ -1,0 +1,26 @@
+name: Fetch photos
+# targets.tsv か取得スクリプトが変わったら、Wikimedia Commons から写真の情報を集めて commons.tsv・gallery.tsv をコミットする
+on:
+  push:
+    branches: [main]
+    paths: ["tools/photos/targets.tsv", "tools/fetch_photos.py", "tools/fetch_gallery.py"]
+  workflow_dispatch:
+concurrency:
+  group: fetch-photos
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/fetch_photos.py
+      - run: python3 tools/fetch_gallery.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/photos/commons.tsv tools/photos/gallery.tsv
+          git diff --cached --quiet || (git commit -m "Update Commons photo list" && git pull --rebase origin main && git push)
