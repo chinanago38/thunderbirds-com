@@ -100,7 +100,7 @@ def pick(cands, n=40):
     return chosen
 
 # Wikidata が艦級のカテゴリを返す・カテゴリがない艦は、艦ごとのカテゴリを指定する（存在しなければ写真なし）
-OVERRIDE = {}
+OVERRIDE = {"/about/thunderbirds/": "Category:United States Air Force Thunderbirds"}
 
 # カテゴリがない艦は、ファイル名検索で補う
 SEARCH = {}
