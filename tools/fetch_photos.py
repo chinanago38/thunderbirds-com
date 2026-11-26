@@ -74,6 +74,7 @@ def main():
     rows = [l.split("\t") for l in open(os.path.join(ROOT, "tools/photos/targets.tsv"), encoding="utf-8").read().splitlines()[1:] if l.strip()]
     out = ["slug\tthumb_url\tfile_page_url\tauthor\tlicense\tlicense_url\talt"]
     for slug, ja in rows:
+        if ja.startswith("-"): continue  # 記事写真を使わない（ギャラリーのみ）
         title = resolve_title(ja)
         if not title:
             print("no article:", slug, ja); continue
