@@ -1,0 +1,250 @@
+{
+ "source": "https://www.airforce.com/thunderbirds/schedule",
+ "source_name": "米空軍サンダーバーズの公式の予定",
+ "checked_ja": "2026年11月27日",
+ "list_pages": {
+  "2026": "/about/season2026/"
+ },
+ "events": [
+  {
+   "start": "2026-02-15",
+   "end": "2026-02-15",
+   "place": "Daytona, FL",
+   "ja": "フロリダ州 デイトナ",
+   "name": "Daytona 500",
+   "url": ""
+  },
+  {
+   "start": "2026-03-21",
+   "end": "2026-03-22",
+   "place": "Luke AFB, AZ",
+   "ja": "アリゾナ州 ルーク空軍基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-04-03",
+   "end": "2026-04-04",
+   "place": "Rome, GA",
+   "ja": "ジョージア州 ローム",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-04-11",
+   "end": "2026-04-12",
+   "place": "Panama City, FL",
+   "ja": "フロリダ州 パナマシティ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-04-18",
+   "end": "2026-04-19",
+   "place": "Lakeland, FL",
+   "ja": "フロリダ州 レイクランド",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-04-25",
+   "end": "2026-04-26",
+   "place": "Travis AFB, CA",
+   "ja": "カリフォルニア州 トラビス空軍基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-05-02",
+   "end": "2026-05-03",
+   "place": "JB San Antonio, TX",
+   "ja": "テキサス州 サンアントニオ統合基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-05-09",
+   "end": "2026-05-10",
+   "place": "Fort Lauderdale, FL",
+   "ja": "フロリダ州 フォートローダーデール",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-05-16",
+   "end": "2026-05-17",
+   "place": "Mountain Home AFB, ID",
+   "ja": "アイダホ州 マウンテンホーム空軍基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-05-23",
+   "end": "2026-05-24",
+   "place": "Miami, FL",
+   "ja": "フロリダ州 マイアミ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-05-28",
+   "end": "2026-05-28",
+   "place": "USAF Academy, CO",
+   "ja": "コロラド州 米空軍士官学校",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-06-13",
+   "end": "2026-06-14",
+   "place": "Ocean City, MD",
+   "ja": "メリーランド州 オーシャンシティ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-06-20",
+   "end": "2026-06-21",
+   "place": "Columbus, OH",
+   "ja": "オハイオ州 コロンバス",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-07-11",
+   "end": "2026-07-12",
+   "place": "Duluth, MN",
+   "ja": "ミネソタ州 ダルース",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-07-18",
+   "end": "2026-07-19",
+   "place": "Sioux Falls, SD",
+   "ja": "サウスダコタ州 スーフォールズ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-08-01",
+   "end": "2026-08-02",
+   "place": "Montgomery, NY",
+   "ja": "ニューヨーク州 モンゴメリー",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-08-08",
+   "end": "2026-08-09",
+   "place": "Rochester, NY",
+   "ja": "ニューヨーク州 ロチェスター",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-08-15",
+   "end": "2026-08-16",
+   "place": "Chicago, IL",
+   "ja": "イリノイ州 シカゴ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-08-22",
+   "end": "2026-08-23",
+   "place": "Terre Haute, IN",
+   "ja": "インディアナ州 テレホート",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-08-29",
+   "end": "2026-08-30",
+   "place": "Grissom ARB, IN",
+   "ja": "インディアナ州 グリソム空軍予備役基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-09-05",
+   "end": "2026-09-07",
+   "place": "Branson, MO",
+   "ja": "ミズーリ州 ブランソン",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-09-12",
+   "end": "2026-09-13",
+   "place": "Owensboro, KY",
+   "ja": "ケンタッキー州 オーエンズボロ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-09-19",
+   "end": "2026-09-20",
+   "place": "Roswell, NM",
+   "ja": "ニューメキシコ州 ロズウェル",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-09-26",
+   "end": "2026-09-27",
+   "place": "Salinas, CA",
+   "ja": "カリフォルニア州 サリナス",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-10-03",
+   "end": "2026-10-04",
+   "place": "Huntington Beach, CA",
+   "ja": "カリフォルニア州 ハンティントンビーチ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-10-10",
+   "end": "2026-10-11",
+   "place": "Sacramento, CA",
+   "ja": "カリフォルニア州 サクラメント",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "place": "NAS Jacksonville, FL",
+   "ja": "フロリダ州 ジャクソンビル海軍航空基地",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-10-24",
+   "end": "2026-10-25",
+   "place": "Wichita, KS",
+   "ja": "カンザス州 ウィチタ",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-10-31",
+   "end": "2026-11-01",
+   "place": "Houston, TX",
+   "ja": "テキサス州 ヒューストン",
+   "name": "",
+   "url": ""
+  },
+  {
+   "start": "2026-11-07",
+   "end": "2026-11-08",
+   "place": "Kennedy Space Center, FL",
+   "ja": "フロリダ州 ケネディ宇宙センター",
+   "name": "",
+   "url": ""
+  }
+ ]
+}

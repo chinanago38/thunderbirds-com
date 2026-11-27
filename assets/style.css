@@ -251,3 +251,22 @@ ol.steps li::before{content:counter(st);position:absolute;left:12px;top:10px;wid
 .faq details{border:1px solid #d8e4f0;border-radius:12px;padding:10px 14px;margin:0 0 10px;background:#fff}
 .faq summary{font-weight:700;cursor:pointer}
 .faq details p{margin:8px 0 0}
+
+/* 次の展示飛行 */
+.nextshow .ns-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.nextshow .ns-item{position:relative;border:1px solid #d8e4f0;border-radius:14px;padding:12px 14px;background:#fff}
+.nextshow .ns-item p{margin:0 0 6px}
+.nextshow .ns-first{grid-column:1/-1;border:2px solid #f2a33a;background:#fff8ea;padding:16px 18px}
+.nextshow .ns-more{display:none}
+.nextshow .ns-date{font-weight:800;color:#0a2540}
+.nextshow .ns-first .ns-date,.nextshow .ns-pending .ns-date{font-size:1.4rem;line-height:1.45;font-weight:800}
+.nextshow .ns-left:not(:empty){display:inline-block;background:#0a2540;color:#fff;border-radius:999px;padding:1px 12px;font-size:.88rem;vertical-align:middle}
+.nextshow .ns-place{font-size:1.02rem;font-weight:700}
+.nextshow .ns-first .ns-place{font-size:1.25rem}
+.nextshow .ns-en{color:#41536b;font-size:.85rem}
+.nextshow .ns-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.86rem}
+.nextshow .ns-links a{position:relative;z-index:2}
+.nextshow .ns-sub .ns-links .btn{display:none}
+.nextshow .ns-cover{position:absolute;inset:0;border-radius:14px;z-index:1}
+.nextshow .ns-pending{border:2px solid #f2a33a;background:#fff8ea;border-radius:14px;padding:16px 18px;margin-bottom:10px}
+@media (max-width:640px){.nextshow .ns-list{grid-template-columns:1fr}}

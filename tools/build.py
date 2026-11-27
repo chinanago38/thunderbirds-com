@@ -2,11 +2,14 @@
 """サンダーバーズ.com のページを tools/content/*.html から生成する。
 ファイル名 <dir>__<slug>.html → /<dir>/<slug>/、<dir>__index.html → /<dir>/、<name>.html → /<name>/、index.html → /
 1行目 title、2行目 description、3行目以降 本文（h1・p.updated・h2 …・section.sources）。"""
-import glob, html, os, re, datetime
+import sys, glob, html, os, re, datetime
 
+sys.dont_write_bytecode = True
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import events
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://xn--vckkr8d3i3bb.com"
-CSS_VER = "20261127i"
+CSS_VER = "20261127j"
 AD = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1061443138303693" crossorigin="anonymous"></script>'
 NAV = [("サンダーバーズとは", "/about/thunderbirds/")]
 SECTION_NAME = {"about": ("基礎知識", "/about/")}
@@ -292,7 +295,7 @@ def link_ships(url, body):
     return re.sub(r"<td>([ぁ-ん]+)</td>", rep, body)
 
 def top_hero(body):
-    return (f'<section class="tophero art art-br"><img class="art-img" src="/assets/hero.webp?v=1127" alt="ちんあなご編集部のキャラクター" width="1344" height="752" fetchpriority="high">'
+    return (f'<section class="tophero art art-br"><img class="art-img" style="display:block;width:100%;max-width:100%;height:auto" src="/assets/hero.webp?v=1127" alt="ちんあなご編集部のキャラクター" width="1344" height="752" fetchpriority="high">'
             f'<div class="inner"><p class="kicker">米空軍サンダーバーズのガイド</p>'
             f'<h1>サンダーバーズを<br>もっと知る</h1><p class="lead">米空軍のアクロバット飛行チーム「サンダーバーズ」の歴史と展示スケジュールを、米空軍の公式発表からまとめています。</p>'
             f'<div class="cta"><a class="btn" href="/about/thunderbirds/">サンダーバーズとは</a></div></div></section>\n')
@@ -466,7 +469,7 @@ def render(url, title, desc, body):
         crumbs.append((strip(m.group(1)) if m else title, None))
     crumb = " › ".join(f'<a href="{u}">{esc(t)}</a>' if u else esc(t) for t, u in crumbs)
     if url == "/":
-        hero = top_hero(body) + photo_wall()
+        hero = top_hero(body) + events.next_card() + photo_wall()
     if url == "/calendar/":
         body = link_garrisons(archive_rows(body))
     body = ul_to_cards(body)
@@ -474,6 +477,7 @@ def render(url, title, desc, body):
     if gal:
         j = main.find('<section class="sources block">')
         main = main[:j] + gal + main[j:] if j >= 0 else main + gal
+    main = events.insert(url, main)
     nav = "".join(f'<a href="{u}">{t}</a>' for t, u in NAV if os.path.exists(os.path.join(ROOT, u.strip("/"), "index.html")) )
     return f"""<!DOCTYPE html>
 <html lang="ja">
