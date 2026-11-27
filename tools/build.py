@@ -202,6 +202,9 @@ GALLERY_OWN_ONLY = {
     "/about/academygraduation/",
     "/about/hometownhero/",
     "/about/lukedays2024/",
+    "/about/thunderovertherock2023/",
+    "/about/soundofspeed/",
+    "/about/wingsoverwyoming/",
 }
 
 
