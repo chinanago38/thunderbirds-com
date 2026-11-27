@@ -275,8 +275,8 @@ def top_hero(body):
     bg = f' style="background-image:linear-gradient(180deg,rgba(10,20,40,.55),rgba(10,20,40,.88)),url({esc(ph[1])})"' if ph else ""
     credit = (f'<p class="credit">写真：{esc(ph[6])} {esc(ph[3])} / <a href="{esc(ph[5])}" rel="noopener license" target="_blank">{esc(ph[4])}</a>'
               f'（<a href="{esc(ph[2])}" rel="noopener" target="_blank">Wikimedia Commons</a>）</p>') if ph else ""
-    return (f'<section class="tophero"{bg}><div class="inner"><p class="kicker">米空軍サンダーバーズの非公式ファンガイド</p>'
-            f'<h1>サンダーバーズを<br>もっと知る</h1><p class="lead">米空軍のアクロバット飛行チーム「サンダーバーズ」の歴史と展示スケジュールを、米空軍の公式発表からまとめています。個人運営の非公式サイトです。</p>'
+    return (f'<section class="tophero"{bg}><div class="inner"><p class="kicker">米空軍サンダーバーズのガイド</p>'
+            f'<h1>サンダーバーズを<br>もっと知る</h1><p class="lead">米空軍のアクロバット飛行チーム「サンダーバーズ」の歴史と展示スケジュールを、米空軍の公式発表からまとめています。</p>'
             f'<div class="cta"><a class="btn" href="/about/thunderbirds/">サンダーバーズとは</a></div></div>{credit}</section>\n')
 
 SHIP_JA = {"CVN 68": "ニミッツ", "CVN 69": "ドワイト・D・アイゼンハワー", "CVN 70": "カール・ヴィンソン", "CVN 71": "セオドア・ルーズベルト",
@@ -477,7 +477,7 @@ def render(url, title, desc, body):
 {main}</div></main>
 
 <footer class="site"><div class="wrap">
-  <p>サンダーバーズ.com は、米空軍サンダーバーズの情報を米空軍の公式発表から日本語でまとめた個人運営のファン向け情報サイトです。米空軍・米国政府の公式サイトではありません。</p>
+  <p>サンダーバーズ.com は、米空軍サンダーバーズの情報を米空軍の公式発表から日本語でまとめた情報サイトです。米空軍・米国政府とは関係のない、ちんあなご編集部のサイトです。</p>
   <p>{" ・ ".join(f'<a href="{u}">{t}</a>' for t, u in [("トップ", "/")] + NAV)}</p>
   <p><a href="/operator/">運営者情報</a> ・ <a href="/editorial-policy/">編集方針</a> ・ <a href="/contact/">お問い合わせ</a> ・ <a href="/privacy/">プライバシーポリシー</a> ・ <a href="/disclaimer/">免責事項</a></p>
   <p>© 2026 サンダーバーズ.com</p>
