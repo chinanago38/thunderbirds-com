@@ -6,7 +6,7 @@ import glob, html, os, re, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://xn--vckkr8d3i3bb.com"
-CSS_VER = "20261127h"
+CSS_VER = "20261127i"
 AD = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1061443138303693" crossorigin="anonymous"></script>'
 NAV = [("サンダーバーズとは", "/about/thunderbirds/")]
 SECTION_NAME = {"about": ("基礎知識", "/about/")}
@@ -38,6 +38,22 @@ def blockify(body):
         elif strip(p): out.append(f'<div class="block lead-block">{p.strip()}</div>\n')
     return "".join(out) + tail
 
+def picked_rows():
+    # seo-system の gh-grow が Wikimedia Commons から選んだ写真（slug・画像・元のページ・撮影者・ライセンス・説明）。写真の取り込みの Actions はこの表を書き換えない
+    rows = {}
+    p = os.path.join(ROOT, "tools", "photos", "picked.tsv")
+    if os.path.exists(p):
+        for l in open(p, encoding="utf-8").read().splitlines()[1:]:
+            c = l.split("\t")
+            if len(c) >= 7 and c[1].startswith("https://"): rows.setdefault(c[0], []).append(c)
+    return rows
+
+def carded_links():
+    # トップの一覧で写真カードになる面（写真の節と同じ写真が2回出ないように外す）
+    f = os.path.join(ROOT, "tools", "content", "index.html")
+    t = open(f, encoding="utf-8").read() if os.path.exists(f) else ""
+    return {u for m in re.findall(r"<ul>(?:\s*<li><a href=\"/(?:(?!</li>).)*</li>){3,}\s*</ul>", t, re.S) for u in re.findall(r'<li><a href="([^"]+)"', m)}
+
 def load_photos():
     photos = {}
     f = os.path.join(ROOT, "tools", "photos", "commons.tsv")
@@ -54,6 +70,8 @@ def load_photos():
             a = "作者不明"
         c[3] = a
         photos[c[0].strip()] = c
+    for u, rs in picked_rows().items():
+        if u not in photos: photos[u] = [u] + rs[0][1:7]
     return photos
 
 PHOTOS = None
@@ -215,10 +233,15 @@ def assign_galleries():
     used = set()
     if PHOTOS:
         used |= {r[1] for r in PHOTOS.values()}
+    mine = {}
+    for u, rs in picked_rows().items():
+        for c in rs:
+            if c[1] not in used:
+                mine.setdefault(u, []).append([u, "", c[1], c[2], c[3], c[4], c[5]]); used.add(c[1])
     pages = [url_of(f) for f in glob.glob(os.path.join(ROOT, "tools", "content", "*.html"))]
     pages.sort(key=lambda u: (u.count("/") < 3, u))
     for u in pages:
-        own = [r for r in GALLERY.get(u, []) if r[2] not in used]
+        own = mine.get(u, []) + [r for r in GALLERY.get(u, []) if r[2] not in used]
         if len(own) < 10 and u not in GALLERY_OWN_ONLY:
             sec = "/" + u.strip("/").split("/")[0] + "/"
             for k, v in sorted(GALLERY.items()):
@@ -339,6 +362,7 @@ def next_events():
 def photo_wall():
     global PHOTOS
     if PHOTOS is None: PHOTOS = load_photos(); dedupe_photos()
+    if carded_links(): return ""  # トップに写真カードの一覧がある時は、写真の節を重ねない
     items = []
     for u in sorted(PHOTOS):
         if re.match(r"^/about/[a-z0-9]+/$", u) and os.path.exists(os.path.join(ROOT, u.strip("/"), "index.html")):
@@ -381,7 +405,7 @@ def ul_to_cards(main):
     SEEN_THUMBS.clear(); USED_SRC.clear()
     def rep(m):
         items = re.findall(r'<li><a href="([^"]+)">(.*?)</a>(?:：|・)?(.*?)</li>', m.group(0), re.S)
-        if not items or len(items) < 3: return m.group(0)
+        if not items or len(items) < 3 or any(not u.startswith("/") for u, _, _ in items): return m.group(0)
         def th(u):
             if not u.startswith("/"): return ""
             ph = photo_for(u)
@@ -398,7 +422,11 @@ def ul_to_cards(main):
                 src = pool[0][2]
             USED_SRC.add(src)
             return f'<img class="thumb" src="{esc(src)}" alt="{esc(alt)}" loading="lazy">'
-        return '<div class="cards">' + "".join(f'<a class="card{" has-thumb" if th(u) else ""}" href="{u}">{th(u)}<strong>{strip(t)}</strong><small>{strip(d)}</small></a>' for u, t, d in items) + "</div>"
+        out = []
+        for u, t, d in items:
+            img = th(u)
+            out.append(f'<a class="card{" has-thumb" if img else ""}" href="{u}">{img}<strong>{strip(t)}</strong><small>{strip(d)}</small></a>')
+        return '<div class="cards">' + "".join(out) + "</div>"
     return re.sub(r"<ul>(?:\s*<li><a href=.*?</li>)+\s*</ul>", rep, main, flags=re.S)
 
 def complete(name):
