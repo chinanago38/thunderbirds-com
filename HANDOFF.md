@@ -1,3 +1,4 @@
 # HANDOFF
+- 2026-11-27 面を4本足し、1面を3,000字以上にした（seo-system/tools/gh-grow.js）。本文の面 10／目標 25・3,000字未満 0。
 - 2026-11-27 面を4本足し、0面を3,000字以上にした（seo-system/tools/gh-grow.js）。本文の面 6／目標 25・3,000字未満 1。
 - 2026-11-27 Bing の確認ファイル（BingSiteAuth.xml）と ads.txt を追加。次：なし（消さない）。
