@@ -7,9 +7,10 @@ import sys, glob, html, os, re, datetime
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import events
+import sections
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://xn--vckkr8d3i3bb.com"
-CSS_VER = "20261127k"
+CSS_VER = "20261127l"
 AD = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1061443138303693" crossorigin="anonymous"></script>'
 NAV = [("サンダーバーズとは", "/about/thunderbirds/")]
 SECTION_NAME = {"about": ("基礎知識", "/about/")}
@@ -478,6 +479,7 @@ def render(url, title, desc, body):
         j = main.find('<section class="sources block">')
         main = main[:j] + gal + main[j:] if j >= 0 else main + gal
     main = events.insert(url, main)
+    main = sections.insert(url, main)
     nav = "".join(f'<a href="{u}">{t}</a>' for t, u in NAV if os.path.exists(os.path.join(ROOT, u.strip("/"), "index.html")) )
     return f"""<!DOCTYPE html>
 <html lang="ja">

@@ -1,4 +1,5 @@
 # HANDOFF
+- 2026-11-27 本文の節に米軍の公式写真（米政府の著作物・tools/photos/section.tsv）を 113 枚置いた。文字だけの節の残り 0。次：新しい面は seo-system/tools/gh-grow.js が同じように置く。
 - 2026-11-27 2025年の公式の予定を tools/events.json に足し、行事の面（/events/）と動画の置き場を用意した。次：行事の面は seo-system/tools/gh-grow.js が作る。
 - 2026-11-27 面を2本書き直し、 面を0本足し、0面を3,000字以上にした（seo-system/tools/gh-grow.js）。本文の面 25／目標 25・3,000字未満 0。
 - 2026-11-27 トップの絵の下に「次の展示飛行」（公式の予定 tools/events.json・日が過ぎると自動で次へ・過ぎた分は一覧のアーカイブへ）。トップの絵が古い見た目の指定でも切れないようにした。次：公式の予定が変わったら tools/events.json を直して build。
