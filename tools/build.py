@@ -6,7 +6,7 @@ import glob, html, os, re, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://xn--vckkr8d3i3bb.com"
-CSS_VER = "20261126a"
+CSS_VER = "20261127h"
 AD = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1061443138303693" crossorigin="anonymous"></script>'
 NAV = [("サンダーバーズとは", "/about/thunderbirds/")]
 SECTION_NAME = {"about": ("基礎知識", "/about/")}
@@ -269,15 +269,10 @@ def link_ships(url, body):
     return re.sub(r"<td>([ぁ-ん]+)</td>", rep, body)
 
 def top_hero(body):
-    global PHOTOS
-    if PHOTOS is None: PHOTOS = load_photos(); dedupe_photos()
-    ph = PHOTOS.get("/about/thunderbirds/") or next((PHOTOS[u] for u in sorted(PHOTOS)), None)
-    bg = f' style="background-image:linear-gradient(180deg,rgba(10,20,40,.55),rgba(10,20,40,.88)),url({esc(ph[1])})"' if ph else ""
-    credit = (f'<p class="credit">写真：{esc(ph[6])} {esc(ph[3])} / <a href="{esc(ph[5])}" rel="noopener license" target="_blank">{esc(ph[4])}</a>'
-              f'（<a href="{esc(ph[2])}" rel="noopener" target="_blank">Wikimedia Commons</a>）</p>') if ph else ""
-    return (f'<section class="tophero"{bg}><div class="inner"><p class="kicker">米空軍サンダーバーズのガイド</p>'
+    return (f'<section class="tophero art art-br"><img class="art-img" src="/assets/hero.webp?v=1127" alt="ちんあなご編集部のキャラクター" width="1344" height="752" fetchpriority="high">'
+            f'<div class="inner"><p class="kicker">米空軍サンダーバーズのガイド</p>'
             f'<h1>サンダーバーズを<br>もっと知る</h1><p class="lead">米空軍のアクロバット飛行チーム「サンダーバーズ」の歴史と展示スケジュールを、米空軍の公式発表からまとめています。</p>'
-            f'<div class="cta"><a class="btn" href="/about/thunderbirds/">サンダーバーズとは</a></div></div>{credit}</section>\n')
+            f'<div class="cta"><a class="btn" href="/about/thunderbirds/">サンダーバーズとは</a></div></div></section>\n')
 
 SHIP_JA = {"CVN 68": "ニミッツ", "CVN 69": "ドワイト・D・アイゼンハワー", "CVN 70": "カール・ヴィンソン", "CVN 71": "セオドア・ルーズベルト",
            "CVN 72": "エイブラハム・リンカーン", "CVN 73": "ジョージ・ワシントン", "CVN 74": "ジョン・C・ステニス", "CVN 75": "ハリー・S・トルーマン",
