@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import events
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://xn--vckkr8d3i3bb.com"
-CSS_VER = "20261127j"
+CSS_VER = "20261127k"
 AD = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1061443138303693" crossorigin="anonymous"></script>'
 NAV = [("サンダーバーズとは", "/about/thunderbirds/")]
 SECTION_NAME = {"about": ("基礎知識", "/about/")}

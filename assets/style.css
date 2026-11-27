@@ -270,3 +270,13 @@ ol.steps li::before{content:counter(st);position:absolute;left:12px;top:10px;wid
 .nextshow .ns-cover{position:absolute;inset:0;border-radius:14px;z-index:1}
 .nextshow .ns-pending{border:2px solid #f2a33a;background:#fff8ea;border-radius:14px;padding:16px 18px;margin-bottom:10px}
 @media (max-width:640px){.nextshow .ns-list{grid-template-columns:1fr}}
+
+/* 行事の動画（押すまで読み込まない） */
+.yt-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.yt{margin:0}
+.yt-play{position:relative;display:block;width:100%;padding:0;border:0;border-radius:12px;overflow:hidden;cursor:pointer;background:#0a2540;aspect-ratio:16/9}
+.yt-play img{display:block;width:100%;height:100%;object-fit:cover}
+.yt-play span{position:absolute;left:50%;top:50%;width:64px;height:46px;margin:-23px 0 0 -32px;border-radius:12px;background:rgba(10,20,40,.82)}
+.yt-play span::after{content:"";position:absolute;left:25px;top:13px;border-style:solid;border-width:10px 0 10px 17px;border-color:transparent transparent transparent #fff}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
+.yt figcaption{font-size:.82rem;color:#41536b;padding:6px 2px;line-height:1.5}

@@ -87,12 +87,31 @@ def schedule_block(year):
     return (f'<section class="block"{"" if up else " style=display:none"}><h2>{year}年のこれからの展示飛行</h2><div class="table-wrap"><table>{head}<tbody id="up{year}">{"".join(map(tr, up))}</tbody></table></div></section>\n'
             f'<section class="block"{"" if old else " style=display:none"}><h2>{year}年の展示飛行の日程（アーカイブ）</h2><div class="table-wrap"><table>{head}<tbody id="ar{year}">{"".join(map(tr, old))}</tbody></table></div></section>\n{js}\n')
 
+def video_block(url):
+    """この面の行事の動画（events.json の videos。埋め込みが許された公式の動画だけ）。押すまで YouTube は読み込まない"""
+    d = load(); seen = set(); items = []
+    for e in sorted((e for e in d["events"] if e.get("page") == url), key=lambda e: e["start"]):
+        for v in e.get("videos", []):
+            if v["id"] in seen: continue
+            seen.add(v["id"])
+            vid = html.escape(v["id"])
+            items.append(f'<figure class="yt"><button type="button" class="yt-play" data-id="{vid}" aria-label="動画を再生：{html.escape(v["title"])}">'
+                         f'<img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="{html.escape(v["title"])}" loading="lazy" width="480" height="360"><span></span></button>'
+                         f'<figcaption><b>{e["start"][:4]}年 {html.escape(e["ja"])}</b><br>{html.escape(v["title"])}（{html.escape(v["channel"])}）</figcaption></figure>')
+    if not items: return ""
+    js = ("<script>(function(){document.querySelectorAll('.yt-play').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');"
+          "f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label');f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';b.replaceWith(f)})})})();</script>")
+    return (f'<section class="block"><h2>行事の動画</h2><div class="yt-list">{"".join(items)}</div>'
+            f'<p class="note">再生ボタンを押すと YouTube の動画を読み込みます。</p>{js}</section>\n')
+
 def insert(url, main):
-    """予定の一覧を出す面（events.json の list_pages）の本文の末尾（出典の前）に一覧を足す"""
+    """行事の面には動画を、予定の一覧を出す面（events.json の list_pages）には一覧を、本文の末尾（出典の前）に足す"""
     d = load()
+    blocks = video_block(url)
     for year, page in sorted(d.get("list_pages", {}).items(), reverse=True):  # 新しい年を上に
         if page == url:
-            block = schedule_block(year)
-            k = main.find('<section class="sources block">')
-            main = main[:k] + block + main[k:] if k >= 0 else main + block
+            blocks += schedule_block(year)
+    if blocks:
+        k = main.find('<section class="sources block">')
+        main = main[:k] + blocks + main[k:] if k >= 0 else main + blocks
     return main
