@@ -196,6 +196,15 @@ def figure_for(url):
 
 GALLERY = None
 GAL_ASSIGNED = None
+# 行事ごとの記事には、その記事に登録された写真を表示する。
+GALLERY_OWN_ONLY = {
+    "/about/arcticthunder/",
+    "/about/academygraduation/",
+    "/about/hometownhero/",
+    "/about/lukedays2024/",
+}
+
+
 def assign_galleries():
     # サイト全体で同じ写真が2回出ないよう、個別ページ→一覧ページの順に写真を割り当てる
     global GAL_ASSIGNED
@@ -207,7 +216,7 @@ def assign_galleries():
     pages.sort(key=lambda u: (u.count("/") < 3, u))
     for u in pages:
         own = [r for r in GALLERY.get(u, []) if r[2] not in used]
-        if len(own) < 10:
+        if len(own) < 10 and u not in GALLERY_OWN_ONLY:
             sec = "/" + u.strip("/").split("/")[0] + "/"
             for k, v in sorted(GALLERY.items()):
                 if k != u and k.startswith(sec):
